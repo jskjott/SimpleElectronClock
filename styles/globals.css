@@ -1,3 +1,19 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Satoshi", "sans-serif";
+  --breakpoint-3xl: 1920px;
+  --color-avocado-100: oklch(0.99 0 0);
+  --color-avocado-200: oklch(0.98 0.04 113.22);
+  --color-avocado-300: oklch(0.94 0.11 115.03);
+  --color-avocado-400: oklch(0.92 0.19 114.08);
+  --color-avocado-500: oklch(0.84 0.18 117.33);
+  --color-avocado-600: oklch(0.53 0.12 118.34);
+  --ease-fluid: cubic-bezier(0.3, 0, 0, 1);
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  /* ... */
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -38,5 +54,129 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+.Switch {
+  position: relative;
+  display: flex;
+  appearance: none;
+  border: 0;
+  margin: 0;
+  padding: 1px;
+  width: 2.5rem;
+  height: 1.5rem;
+  border-radius: 1.5rem;
+  outline: 1px solid;
+  outline-offset: -1px;
+  background-color: transparent;
+  background-image: linear-gradient(to right, var(--color-gray-700) 35%, var(--color-gray-200) 65%);
+  background-size: 6.5rem 100%;
+  background-position-x: 100%;
+  background-repeat: no-repeat;
+  transition-property: background-position, box-shadow;
+  transition-timing-function: cubic-bezier(0.26, 0.75, 0.38, 0.45);
+  transition-duration: 125ms;
+
+  &:active {
+    background-color: var(--color-gray-100);
+  }
+
+  &[data-checked] {
+    background-position-x: 0%;
+  }
+
+  &[data-checked]:active {
+    background-color: var(--color-gray-500);
+  }
+
+  @media (prefers-color-scheme: light) {
+    box-shadow: var(--color-gray-200) 0 1.5px 2px inset;
+    outline-color: var(--color-gray-200);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    box-shadow: rgb(0 0 0 / 75%) 0 1.5px 2px inset;
+    outline-color: rgb(255 255 255 / 15%);
+    background-image: linear-gradient(
+      to right,
+      var(--color-gray-500) 35%,
+      var(--color-gray-200) 65%
+    );
+
+    &[data-checked] {
+      box-shadow: none;
+    }
+  }
+
+  &:focus-visible {
+    &::before {
+      content: '';
+      inset: 0;
+      position: absolute;
+      border-radius: inherit;
+      outline: 2px solid var(--color-blue);
+      outline-offset: 2px;
+    }
+  }
+}
+
+.Thumb {
+  aspect-ratio: 1 / 1;
+  height: 100%;
+  border-radius: 100%;
+  background-color: white;
+  transition: translate 150ms ease;
+
+  &[data-checked] {
+    translate: 1rem 0;
+  }
+
+  @media (prefers-color-scheme: light) {
+    box-shadow:
+      0 0 1px 1px var(--color-gray-100),
+      0 1px 1px var(--color-gray-100),
+      1px 2px 4px -1px var(--color-gray-100);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    box-shadow:
+      0 0 1px 1px rgb(0 0 0 / 25%),
+      0 1px 1px rgb(0 0 0 / 25%),
+      1px 2px 4px -1px rgb(0 0 0 / 25%);
+  }
+}
+
+:root {
+  --color-blue: oklch(45% 50% 264deg);
+  --color-red: oklch(50% 55% 31deg);
+
+  --color-gray-50: oklch(98.42% 0.0034 247.86deg);
+  --color-gray-100: oklch(12% 9.5% 264deg / 5%);
+  --color-gray-200: oklch(12% 9% 264deg / 8%);
+  --color-gray-300: oklch(12% 8.5% 264deg / 17%);
+  --color-gray-400: oklch(12% 8% 264deg / 38%);
+  --color-gray-500: oklch(12% 7.5% 264deg / 50%);
+  --color-gray-600: oklch(12% 7% 264deg / 67%);
+  --color-gray-700: oklch(12% 6% 264deg / 77%);
+  --color-gray-800: oklch(12% 5% 264deg / 85%);
+  --color-gray-900: oklch(12% 5% 264deg / 90%);
+  --color-gray-950: oklch(12% 5% 264deg / 95%);
+
+  @media (prefers-color-scheme: dark) {
+    --color-blue: oklch(69% 50% 264deg);
+    --color-red: oklch(80% 55% 31deg);
+
+    --color-gray-50: oklch(17% 1% 264deg);
+    --color-gray-100: oklch(28% 3% 264deg / 65%);
+    --color-gray-200: oklch(31% 3% 264deg / 80%);
+    --color-gray-300: oklch(35% 3% 264deg / 80%);
+    --color-gray-400: oklch(47% 3.5% 264deg / 80%);
+    --color-gray-500: oklch(64% 4% 264deg / 80%);
+    --color-gray-600: oklch(82% 4% 264deg / 80%);
+    --color-gray-700: oklch(92% 4.5% 264deg / 80%);
+    --color-gray-800: oklch(93% 3.5% 264deg / 85%);
+    --color-gray-900: oklch(95% 2% 264deg / 90%);
+    --color-gray-950: oklch(94% 1.5% 264deg / 95%);
   }
 }
